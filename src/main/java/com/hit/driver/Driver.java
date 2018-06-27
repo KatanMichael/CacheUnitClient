@@ -33,13 +33,13 @@ public class Driver
     {
         ArrayList<String> req = new ArrayList<> ();
 
-        String s1 = ("{\"headers\":{\"action\":\"GET\"},\"body\":[{\"id\":100,\"content\":100}]}");
-        String s2 = ("{\"headers\":{\"action\":\"GET\"},\"body\":[{\"id\":101,\"content\":101}]}");
+        String s1 = ("{\"headers\":{\"action\":\"GSRT\"},\"body\":[{\"id\":100W,\"content\":100}]}");
+        String s2 = ("{\"headers\":{\"action\":\"DELETE\"},\"body\":[{\"id\":101,\"content\":101}]}");
         String s3 = ("{\"headers\":{\"action\":\"GET\"},\"body\":[{\"id\":102,\"content\":100}]}");
 
         req.add (s1);
-        req.add (s2);
-        req.add (s3);
+        //req.add (s2);
+        //req.add (s3);
 
         ObjectOutputStream stream = null;
         try

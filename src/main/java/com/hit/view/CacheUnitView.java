@@ -3,6 +3,8 @@ package com.hit.view;
 import com.hit.util.ObserMessage;
 
 import javax.swing.*;
+import javax.swing.plaf.LabelUI;
+import javax.swing.plaf.basic.BasicLabelUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Observable;
@@ -10,7 +12,11 @@ import java.util.Observable;
 
 public class CacheUnitView extends Observable implements View
 {
-    JLabel textLabel;
+    private JLabel textLabel;
+    private LabelUI labelUI;
+    private JPanel panel2;
+    private JFrame frame;
+
 
     public CacheUnitView()
     {
@@ -28,20 +34,19 @@ public class CacheUnitView extends Observable implements View
     @Override
     public void start()
     {
-        JFrame frame = new JFrame ("CachUnitUI");
+        frame = new JFrame ("CachUnitUI");
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+
+        frame.setLayout (new BorderLayout ());
 
         JPanel panel1 = new JPanel ();
         panel1.setOpaque (true);
 
-        JPanel panel2 = new JPanel ();
+        panel2 = new JPanel ();
         panel2.setOpaque (true);
 
         textLabel = new JLabel ("Waiting For Input");
 
-
-
-        panel2.add (textLabel);
 
         JButton loadReq_Btn = new JButton ("Load a Request");
 
@@ -74,7 +79,7 @@ public class CacheUnitView extends Observable implements View
 
 
         frame.add (panel1, BorderLayout.NORTH);
-        frame.add (panel2, BorderLayout.SOUTH);
+        frame.add (panel2,BorderLayout.CENTER);
         frame.pack ();
         frame.setVisible (true);
 
@@ -85,9 +90,8 @@ public class CacheUnitView extends Observable implements View
     {
         String string = (String) t;
 
-        String currentText = textLabel.getText ()+"\n";
-
-        textLabel.setText (currentText+string);
+        panel2.add (new JLabel (string));
+        panel2.validate ();
 
     }
 

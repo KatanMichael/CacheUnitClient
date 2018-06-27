@@ -56,7 +56,7 @@ public class CacheUnitView extends Observable implements View
             public void actionPerformed(ActionEvent e)
             {
                 setChanged ();
-                notifyObservers (new ObserMessage ("view","load"));
+                notifyObservers (new ObserMessage ("view", "load"));
             }
         });
 
@@ -67,7 +67,7 @@ public class CacheUnitView extends Observable implements View
             public void actionPerformed(ActionEvent e)
             {
                 setChanged ();
-                notifyObservers (new ObserMessage ("view","stats"));
+                notifyObservers (new ObserMessage ("view", "stats"));
             }
         });
 
@@ -76,10 +76,8 @@ public class CacheUnitView extends Observable implements View
         panel1.add (statistics_Btn);
 
 
-
-
         frame.add (panel1, BorderLayout.NORTH);
-        frame.add (panel2,BorderLayout.CENTER);
+        frame.add (panel2, BorderLayout.CENTER);
         frame.pack ();
         frame.setVisible (true);
 
@@ -88,12 +86,26 @@ public class CacheUnitView extends Observable implements View
     @Override
     public <T> void updateUIData(T t)
     {
-        String string = (String) t;
 
-        panel2.add (new JLabel (string));
-        panel2.validate ();
+        panel2.removeAll ();
+
+        ObserMessage tMsg = (ObserMessage) t;
+
+        if (tMsg.getSentIdentifier ().equals ("load"))
+        {
+            String inputString = (String) t;
+            String labelString = "Failed";
+
+            if (inputString.length () > 10)
+            {
+                labelString = "Succeeded";
+            }
+
+            panel2.add (new JLabel (labelString));
+            panel2.validate ();
+
+        }
+
 
     }
-
-
 }

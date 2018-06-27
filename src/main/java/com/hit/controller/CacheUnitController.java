@@ -11,6 +11,7 @@ public class CacheUnitController implements Controller
 
     private Model model;
     private View view;
+    private static String id;
 
     public CacheUnitController(Model model, View view)
     {
@@ -21,6 +22,7 @@ public class CacheUnitController implements Controller
     @Override
     public void update(Observable o, Object arg)
     {
+        id = null;
         ObserMessage update = (ObserMessage) arg;
 
         if(update.getSentIdentifier ().equals ("view"))
@@ -33,10 +35,9 @@ public class CacheUnitController implements Controller
 
         if(update.getSentIdentifier ().equals ("model"))
         {
-            view.updateUIData (update.getMessege ());
 
+            view.updateUIData (new ObserMessage (id,update.getMessege ()));
         }
-
 
 
     }

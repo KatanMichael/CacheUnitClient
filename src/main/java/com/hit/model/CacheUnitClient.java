@@ -50,9 +50,6 @@ public class CacheUnitClient
             e.printStackTrace ();
         }
 
-        System.out.println (o.toString ());
-
-
         try
         {
             socket.close ();

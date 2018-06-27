@@ -30,13 +30,24 @@ public class CacheUnitController implements Controller
             if(update.getMessege ().equals ("load"))
             {
                 model.updateModelData ("load");
+            }else
+            {
+                model.updateModelData ("stats");
             }
         }
 
-        if(update.getSentIdentifier ().equals ("model"))
+        if(update.getSentIdentifier ().equals ("model-load"))
         {
+            if(!update.getMessege ().equals ("false"))
+            {
+                view.updateUIData (new ObserMessage ("load",update.getMessege ()));
+            }else
+            {
+                if(update.getMessege ().length () > 4)
+                {
 
-            view.updateUIData (new ObserMessage (id,update.getMessege ()));
+                }
+            }
         }
 
 

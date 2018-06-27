@@ -40,7 +40,7 @@ public class CacheUnitModel extends Observable implements Model
         {
             String send = cacheUnitClient.send (s);
             setChanged ();
-            notifyObservers (new ObserMessage ("model",send));
+            notifyObservers (new ObserMessage ("model-load",send));
         }
     }
 }

@@ -90,21 +90,23 @@ public class CacheUnitView extends Observable implements View
         panel2.removeAll ();
 
         ObserMessage tMsg = (ObserMessage) t;
+        String labelString = null;
+
 
         if (tMsg.getSentIdentifier ().equals ("load"))
         {
-            String inputString = (String) t;
-            String labelString = "Failed";
+            String inputString = tMsg.getMessege ();
+            labelString = "Failed";
 
-            if (inputString.length () > 10)
+            if (inputString.equals ("true"))
             {
                 labelString = "Succeeded";
             }
 
-            panel2.add (new JLabel (labelString));
-            panel2.validate ();
-
         }
+
+        panel2.add (new JLabel (labelString));
+        panel2.validate ();
 
 
     }

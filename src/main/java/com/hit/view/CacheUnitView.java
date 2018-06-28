@@ -103,6 +103,9 @@ public class CacheUnitView extends Observable implements View
                 labelString = "Succeeded";
             }
 
+        }else if(tMsg.getSentIdentifier ().equals ("stats"))
+        {
+            labelString = tMsg.getMessege ();
         }
 
         panel2.add (new JLabel (labelString));

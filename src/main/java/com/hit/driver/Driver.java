@@ -38,8 +38,8 @@ public class Driver
         String s3 = ("{\"headers\":{\"action\":\"GET\"},\"body\":[{\"id\":102,\"content\":100}]}");
 
         req.add (s1);
-        //req.add (s2);
-        //req.add (s3);
+        req.add (s2);
+        req.add (s3);
 
         ObjectOutputStream stream = null;
         try

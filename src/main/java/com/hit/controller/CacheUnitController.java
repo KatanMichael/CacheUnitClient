@@ -1,5 +1,6 @@
 package com.hit.controller;
 
+import com.google.gson.Gson;
 import com.hit.model.Model;
 import com.hit.util.ObserMessage;
 import com.hit.view.View;
@@ -48,6 +49,11 @@ public class CacheUnitController implements Controller
 
                 }
             }
+        }
+
+        if(update.getSentIdentifier ().equals ("stats"))
+        {
+            view.updateUIData (update);
         }
 
 

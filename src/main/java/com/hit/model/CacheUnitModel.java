@@ -20,27 +20,39 @@ public class CacheUnitModel extends Observable implements Model
     @Override
     public <T> void updateModelData(T t)
     {
-        ObjectInputStream inputStream = null;
-        String[] req = null;
+        String requst = (String) t;
 
-        try
+        if(requst.equals ("load"))
         {
-            inputStream = new ObjectInputStream (new FileInputStream ("data.txt"));
-            req = (String[]) inputStream.readObject ();
-        } catch (IOException e)
-        {
-            e.printStackTrace ();
-        } catch (ClassNotFoundException e)
-        {
-            e.printStackTrace ();
-        }
+            ObjectInputStream inputStream = null;
+            String[] req = null;
+
+            try
+            {
+                inputStream = new ObjectInputStream (new FileInputStream ("data.txt"));
+                req = (String[]) inputStream.readObject ();
+            } catch (IOException e)
+            {
+                e.printStackTrace ();
+            } catch (ClassNotFoundException e)
+            {
+                e.printStackTrace ();
+            }
 
 
-        for(String s: req)
+            for(String s: req)
+            {
+                String send = cacheUnitClient.send (s);
+                setChanged ();
+                notifyObservers (new ObserMessage ("model-load",send));
+            }
+        }else if(requst.equals ("stats"))
         {
-            String send = cacheUnitClient.send (s);
+            String dataFromServer = cacheUnitClient.send ("stats");
             setChanged ();
-            notifyObservers (new ObserMessage ("model-load",send));
+            notifyObservers (new ObserMessage ("stats",dataFromServer));
+
         }
+
     }
 }

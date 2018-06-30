@@ -39,16 +39,7 @@ public class CacheUnitController implements Controller
 
         if(update.getSentIdentifier ().equals ("model-load"))
         {
-            if(!update.getMessege ().equals ("false"))
-            {
-                view.updateUIData (new ObserMessage ("load",update.getMessege ()));
-            }else
-            {
-                if(update.getMessege ().length () > 4)
-                {
-
-                }
-            }
+            view.updateUIData(new ObserMessage("load","true"));
         }
 
         if(update.getSentIdentifier ().equals ("stats"))
@@ -56,6 +47,10 @@ public class CacheUnitController implements Controller
             view.updateUIData (update);
         }
 
+        if(update.getSentIdentifier().equals("net-crash"))
+        {
+            view.updateUIData(new ObserMessage("load","false"));
+        }
 
     }
 

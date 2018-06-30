@@ -44,6 +44,12 @@ public class CacheUnitModel extends Observable implements Model
             {
                 String send = cacheUnitClient.send (s);
                 setChanged ();
+
+                if(send.equals("net-crash"))
+                {
+                    notifyObservers(new ObserMessage("net-crash","Failed"));
+                    break;
+                }
                 notifyObservers (new ObserMessage ("model-load",send));
             }
         }else if(requst.equals ("stats"))
